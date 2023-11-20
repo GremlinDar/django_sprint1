@@ -1,10 +1,5 @@
-from datetime import datetime
+from django.shortcuts import render
 
-from django.shortcuts import get_object_or_404, render
-
-from blog.models import Post, Category
-
-# Create your views here.
 posts = [
     {
         'id': 0,
@@ -49,44 +44,16 @@ posts = [
 ]
 
 
-def post_detail(request, id):
-    """Возвращает данные поста."""
-    template = 'blog/detail.html'
-    posts = get_object_or_404(
-        Post,
-        pub_date__lte=datetime.now(),
-        is_published=True,
-        category__is_published=True,
-        id=id
-    )
-    context = {'post': posts}
-    return render(request, template, context)
-
-
 def index(request):
-    """Главная страница. Список постов."""
-    template = 'blog/index.html'
-    posts = Post.objects.filter(
-        is_published=True,
-        category__is_published=True,
-        pub_date__lte=datetime.now()
-    )[:5]
-    context = {'post_list': posts}
-    return render(request, template, context)
+    template_name = 'index.html'
+    return render(request, template_name)
 
 
-def category_posts(request, category_slug):
-    """Страница постов в категории."""
-    template = 'blog/category.html'
-    category_list = get_object_or_404(
-        Category,
-        slug=category_slug,
-        is_published=True
-    )
-    posts = Post.objects.filter(
-        category__slug=category_slug,
-        is_published=True,
-        pub_date__lte=datetime.now()
-    )
-    context = {'post_list': posts, 'category': category_list}
-    return render(request, template, context)
+def post_detail(request, id):
+    template_name = 'detail.html'
+    return render(request, id, template_name)
+
+
+def category_posts(request, category):
+    template_name = 'category.html'
+    return render(request, category, template_name)
