@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+
 {% block title %} {{ post.location }}. {{ post.date }} {% endblock %}
 {% block content %}
   <article>
@@ -14,8 +14,6 @@
         Категория: <a href="{% url 'blog:category_posts' post.category %}">{{ post.category }} </a>
       </li>
     </ul>     
-    <p>
-      {{ post.text }}
-    </p>
+    <p class="card-text">{{ post.text|linebreaksbr }}</p>
   </article>
 {% endblock %}
