@@ -47,7 +47,7 @@ posts = [
 
 
 def index(request):
-    """Главная страница / Лента записей"""
+    """Главная страница/лента записей"""
     context = {'posts': posts}
     return render(request, 'blog/index.html', context)
 
