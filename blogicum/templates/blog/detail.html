@@ -3,7 +3,7 @@
 {% block title %} {{ post.location }}. {{ post.date }} {% endblock %}
 {% block content %}
   <article>
-    {% include "includes/posts_content.html" %}  
+    {% include "includes/posts_description.html" %}  
     <p class="card-text">{{ post.text|linebreaksbr }}</p>
   </article>
 {% endblock %}

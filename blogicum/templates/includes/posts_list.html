@@ -1,7 +1,7 @@
 {% for post in posts|dictsortreversed:'id' %}
   <hr>
   <article>
-    {% include "includes/posts_content.html" %}  
+    {% include "includes/posts_description.html" %}  
     <p>
       {{ post.text|truncatewords:10 }}
     </p>
